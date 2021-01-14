@@ -1,5 +1,6 @@
 {% extends 'core/base.html' %}
 {% block content %}
+{% load humanize %}
 	<div class="container" id="feedapp">
 		<div class="columns">
 			<div class="column is-12">
@@ -18,11 +19,13 @@
 					</form>
 				</div>
 				<div class="wrapper-oinks">
-					<div class="oink" v-for="oink in oinks">
-						<p class="name">[[ oink.oinker ]]</p>
-						<p>[[ oink.body ]]</p>
-						<p class="info">[[ oink.created_at ]]</p>
-					</div>
+					{% for oink in oinks %}
+						<div class="oink">
+							<p class="name">{{oink.created_by.username}}</p>
+							<p>{{ oink.body }}</p>
+							<p class="info">{{ oink.created_at|naturaltime }}</p>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
 			
@@ -74,6 +77,7 @@
 						console.log(error)
 					})
 				}
+				window.location.reload();
 				this.body= '';
 			}
 		}
