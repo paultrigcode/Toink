@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+{% load static %}
 <html>
 <head>
 	<!--Meta -->
@@ -10,6 +12,7 @@
 
 	<!--Styles -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
 
 </head>
@@ -62,11 +65,13 @@
 
 	<!--End Content -->
 
+	<!--Scripts -->
 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	{% block script %}
 
-
-
-
+	{% endblock %}
+	<!--End Scripts -->
 
 </body>
 </html>
