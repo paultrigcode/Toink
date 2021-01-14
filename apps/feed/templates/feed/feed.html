@@ -57,7 +57,22 @@
 					};
 					
 					this.oinks.unshift(oink);
-					console.log(this.oinks);
+					//Send To backend 
+					fetch('/api/add_oink/',{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+							'X-CSRFToken': '{{ csrf_token }}'
+						},
+						credntials: 'same-origin',
+						body : JSON.stringify(oink)
+					})
+					.then((response) =>{
+						console.log(response)
+					})
+					.catch((error) =>{
+						console.log(error)
+					})
 				}
 				this.body= '';
 			}
