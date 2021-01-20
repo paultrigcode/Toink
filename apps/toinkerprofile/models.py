@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class ToinkerProfile(models.Model):
 	user = models.OneToOneField(User,on_delete=models.CASCADE)
-	follows =models.ManyToManyField('self',related_name='followed_by',symmetrical=False)#references itself ,symmetrical is set to false because if i follow you,you dont automatically follow me back
-
+	follows = models.ManyToManyField('self',related_name='followed_by',symmetrical=False)#references itself ,symmetrical is set to false because if i follow you,you dont automatically follow me back
+	avatar = models.ImageField(upload_to='uploads/',blank=True,null=True)
 User.toinkerprofile=property(lambda u: ToinkerProfile.objects.get_or_create(user=u)[0])# when i signup i dont have to create an oinker profile
 
