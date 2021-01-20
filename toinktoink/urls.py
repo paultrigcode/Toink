@@ -17,8 +17,9 @@ from django.contrib import admin
 from django.urls import path
 from apps.core.views import frontpage,signup
 from django.contrib.auth import views
-from apps.feed.views import feed
+from apps.feed.views import feed,search
 from apps.feed.api import api_add_oink
+from apps.toinkerprofile.views import oinkerprofile
 
 urlpatterns = [
 	#
@@ -33,6 +34,10 @@ urlpatterns = [
 	#
 	#
 	path('feed/',feed,name='feed'),
+	path('search/',search,name='search'),
+	path('u/<str:username>/',oinkerprofile,name='oinkerprofile'),
+
+
 
 
 	#
