@@ -5,8 +5,8 @@
 		<div class="columns">
 			<div class="column is-12">
 				<h1 class="title">{{user.username}}</h1>
-				<p>Followers: {{user.toinkerprofile.followed_by.count}}</p>
-				<p>Follows: {{user.toinkerprofile.follows.count}}</p>
+				<p><a href="{% url 'followers' user.username %}">Followers: {{user.toinkerprofile.followed_by.count}}</a></p>
+				<p><a href="{% url 'follows' user.username %}">Follows: {{user.toinkerprofile.follows.count}}</a></p>
 
 				{% if user != request.user %}
 					{% if request.user.toinkerprofile in user.toinkerprofile.followed_by.all %}

@@ -20,3 +20,12 @@ def unfollow_oinker(request,username):
 	user = get_object_or_404(User,username=username)
 	request.user.toinkerprofile.follows.remove(user.toinkerprofile)
 	return redirect('oinkerprofile',username=username) 
+
+
+def followers(request,username):
+	user = get_object_or_404(User,username=username)
+	return render(request,'oinkerprofile/followers.html',{'user':user})
+
+def follows(request,username):
+	user = get_object_or_404(User,username=username)
+	return render(request,'oinkerprofile/follows.html',{'user':user})
