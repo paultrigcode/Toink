@@ -19,7 +19,7 @@ from apps.core.views import frontpage,signup
 from django.contrib.auth import views
 from apps.feed.views import feed,search
 from apps.feed.api import api_add_oink
-from apps.toinkerprofile.views import oinkerprofile
+from apps.toinkerprofile.views import oinkerprofile,follow_oinker,unfollow_oinker
 
 urlpatterns = [
 	#
@@ -36,7 +36,11 @@ urlpatterns = [
 	path('feed/',feed,name='feed'),
 	path('search/',search,name='search'),
 	path('u/<str:username>/',oinkerprofile,name='oinkerprofile'),
+	path('u/<str:username>/follow/',follow_oinker,name='follow_oinker'),
+	path('u/<str:username>/unfollow/',unfollow_oinker,name='unfollow_oinker'),
 
+
+ 
 
 
 
