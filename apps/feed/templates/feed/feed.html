@@ -21,11 +21,48 @@
 				<div class="wrapper-oinks">
 					{% for oink in oinks %}
 						<div class="oink">
-							<p class="name">{{oink.created_by.username}}</p>
-							<p>{{ oink.body }}</p>
-							<p class="info">{{ oink.created_at|naturaltime }}</p>
+							<article class="media">
+								<figure class="media-left">
+									<p class="image is-64x64">
+										{% if user.toinkerprofile.avatar %}
+											<img src="{{ user.toinkerprofile.avatar.url }}">
+										{% endif %}
+									</p>
+								</figure>
+								<div class="media-content">
+									<div class="content">
+										<p>
+											<strong>{{oink.created_by.username}}</strong>
+											<small>{{oink.created_at|naturaltime}}</small>
+											<br>
+											{{oink.body}}
+										</p>
+									</div>
+									
+								</div>
+							</article>
 						</div>
 					{% endfor %}
+					<div v-for="oink in oinks" class="oink">
+						<article class="media">
+							<figure class="media-left">
+								<p class="image is-64x64">
+									<img :src="oink.avatar">
+								</p>
+							</figure>
+							<div class="media-content">
+								<div class="content">
+									<p>
+										<strong>[[oink.oinker]]</strong>
+										<small>[[oink.created_at]]</small>
+										<br>
+										{{oink.body}}
+									</p>
+								</div>
+								
+							</div>
+						</article>
+					</div>
 				</div>
 			</div>
 			
@@ -46,7 +83,9 @@
 				oinks: [],
 				body: '',
 				oinker: '{{ request.user.username }}',
-				created_at: 'Now'
+				created_at: 'Now',
+				avatar: '{% if request.user.toinkerprofile.avatar %}{{request.user.toinkerprofile.avatar.url}}{% endif %}'
+
 			}
 		},
 		methods: {
@@ -56,7 +95,8 @@
 					var oink = {
 						'body': this.body,
 						'oinker':this.oinker,
-						'created_at': this.created_at
+						'created_at': this.created_at,
+						'avatar':this.url
 					};
 					
 					this.oinks.unshift(oink);
