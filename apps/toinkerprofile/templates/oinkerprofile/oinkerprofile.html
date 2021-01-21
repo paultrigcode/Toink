@@ -10,6 +10,8 @@
 						<img src="{{ user.toinkerprofile.avatar.url }}">
 					</figure>
 				{% endif %}
+				<hr>
+				<hr>
 				<p><a href="{% url 'followers' user.username %}">Followers: {{user.toinkerprofile.followed_by.count}}</a></p>
 				<p><a href="{% url 'follows' user.username %}">Follows: {{user.toinkerprofile.follows.count}}</a></p>
 
@@ -27,9 +29,26 @@
 				<div class="wrapper-oinks">
 					{% for oink in user.oinks.all %}
 						<div class="oink">
-							<p class="name">{{oink.created_by.username}}</p>
-							<p>{{oink.body}}</p>
-							<p class="info">{{oink.created_at|naturaltime}}</p>
+							<article class="media">
+								<figure class="media-left">
+									<p class="image is-64x64">
+										{% if user.toinkerprofile.avatar %}
+											<img src="{{ user.toinkerprofile.avatar.url }}">
+										{% endif %}
+									</p>
+								</figure>
+								<div class="media-content">
+									<div class="content">
+										<p>
+											<strong>{{oink.created_by.username}}</strong>
+											<small>{{oink.created_at|naturaltime}}</small>
+											<br>
+											{{oink.body}}
+										</p>
+									</div>
+									
+								</div>
+							</article>
 						</div>
 					{% endfor %}
 				</div>
