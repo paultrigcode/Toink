@@ -18,7 +18,7 @@ from django.urls import path
 from apps.core.views import frontpage,signup
 from django.contrib.auth import views
 from apps.feed.views import feed,search
-from apps.feed.api import api_add_oink
+from apps.feed.api import api_add_oink,api_add_like
 from apps.toinkerprofile.views import oinkerprofile,follow_oinker,unfollow_oinker,followers,follows,edit_profile
 from django.conf import settings
 from django.conf.urls.static import static
@@ -53,6 +53,8 @@ urlpatterns = [
 	#Api
 
 	path('api/add_oink/',api_add_oink,name='api_add_oink'),
+	path('api/add_like/',api_add_like,name='api_add_like'),
+
 
 
 

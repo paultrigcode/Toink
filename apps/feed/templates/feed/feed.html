@@ -36,6 +36,8 @@
 											<small>{{oink.created_at|naturaltime}}</small>
 											<br>
 											{{oink.body}}
+											<br>
+											<a @click="likeOink({{oink.id}})"></a>
 										</p>
 									</div>
 									
